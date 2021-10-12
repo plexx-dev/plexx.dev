@@ -1,0 +1,70 @@
+@font-face{
+    font-family: "Kanit";
+    src: url("fonts/Kanit-Regular.ttf");
+    src: url("fonts/Kanit-Regular.ttf") format("ttf"),
+    url("fonts/Kanit-Regular.ttf") format("opentype"),
+    url("fonts/Kanit-Regular.ttf") format("svg");
+  }
+  
+  * {
+    font-family: "Kanit";
+  }
+
+body {
+    background-color: rgb(22, 22, 22);
+    color: #fff;
+    margin: 0;
+    height: 100%;
+}
+
+.main-container {
+    vertical-align: baseline;
+    padding-top: 24vh;
+    margin: 0 auto 24vh;
+    max-width: fit-content;
+    max-height: fit-content;
+}
+
+.title {
+    text-align: center;
+    font-size: 100;
+    margin-bottom: 0;
+    margin: 0 auto 0;
+}
+
+.text {
+    text-align: center;
+    margin-bottom: 0;
+    margin-right: auto;
+    margin-left: 1rem;
+}
+
+ul {
+    align-content: center;
+    list-style-type: none;
+    padding-inline-start: 0;
+}
+
+.n-li {
+    float: left;
+    margin-right: 1.5rem;
+    margin-top: 1rem;
+    font-size: 20;
+}
+
+.l-li {
+    float: left;
+    margin-right: 0;
+    margin-top: 1rem;
+    font-size: 20;
+}
+
+.link-container {
+    display: flex;
+    justify-content: center;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
