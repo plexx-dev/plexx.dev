@@ -17,5 +17,5 @@ jobs:
     - name: Build & Push the Docker image
       run: |
         echo "${{ secrets.DOCKERPW }}" | docker login -u "plexxdev" --password-stdin
-        docker image build -t plexxdev/plexx.dev:$(date +%s) .
+        docker build -t plexxdev/plexx.dev:$(date +%s) .
         docker push plexxdev/plexx.dev:$(date +%s)
