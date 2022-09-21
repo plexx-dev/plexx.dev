@@ -1,0 +1,21 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build & Push the Docker image
+      run: |
+        echo "${{ secrets.DOCKERPW }}" | docker login -u "plexxdev" --password-stdin
+        docker image build -t plexxdev/plexx.dev:$(date +%s) .
+        docker push plexxdev/plexx.dev:$(date +%s)
