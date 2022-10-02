@@ -18,5 +18,5 @@ jobs:
       run: |
         VERSION=$(date +%s)
         echo "${{ secrets.DOCKERPW }}" | docker login -u "plexxdev" --password-stdin
-        docker build -t plexxdev/plexx.dev:$VERSION .
-        docker push plexxdev/plexx.dev:$VERSION
+        docker build -t plexxdev/plexx.dev .
+        docker push plexxdev/plexx.dev

@@ -1,13 +1,13 @@
 @font-face{
-    font-family: "Kanit";
-    src: url("Kanit-Regular.ttf");
-    src: url("Kanit-Regular.ttf") format("ttf"),
-    url("Kanit-Regular.ttf") format("opentype"),
-    url("Kanit-Regular.ttf") format("svg");
+    font-family: "Source Code Pro";
+    src: url("SourceCodePro-VariableFont_wght.ttf");
+    src: url("SourceCodePro-VariableFont_wght.ttf") format("ttf"),
+    url("SourceCodePro-VariableFont_wght.ttf") format("opentype"),
+    url("SourceCodePro-VariableFont_wght.ttf") format("svg");
   }
   
   * {
-    font-family: "Kanit";
+    font-family: "Source Code Pro";
   }
 
 html {
@@ -26,7 +26,7 @@ body::-webkit-scrollbar {
 }
 
 body {
-    background-color: rgb(10, 10, 10);
+    background-color: rgb(0,0,0);
     color: #fff;
     margin: 0;
     height: 100%;
@@ -43,6 +43,7 @@ body {
 .title {
     text-align: center;
     font-size: 100;
+    font-weight: bold;
     margin-bottom: 0;
     margin: 0 auto 0;
 }
@@ -63,14 +64,12 @@ ul {
     float: left;
     margin-right: 1.5rem;
     margin-top: 1rem;
-    font-size: 20;
 }
 
 .l-li {
     float: left;
     margin-right: 0;
     margin-top: 1rem;
-    font-size: 20;
 }
 
 .link-container {
@@ -80,7 +79,13 @@ ul {
 
 a {
     color: #fff;
+    font-weight: 515;
+    font-size: 20;
     text-decoration: none;
+}
+
+.link-text {
+    text-decoration: underline;
 }
 
 .work-container {
