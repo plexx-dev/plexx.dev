@@ -27,7 +27,7 @@ main {
 
 .title {
     text-align: center;
-    font-size: 100;
+    font-size: 8rem;
     font-weight: bold;
     margin-bottom: 0;
     margin: 0 auto 0;
@@ -39,11 +39,15 @@ main {
     margin-right: auto;
 }
 
+nav {
+    padding: 2rem;
+}
+
 a {
     padding: .75rem;
     color: #fff;
     font-weight: 515;
-    font-size: 20;
+    font-size: 1.25rem;
     text-decoration: none;
 }
 
