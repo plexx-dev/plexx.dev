@@ -1,9 +1,9 @@
 @font-face{
     font-family: "Source Code Pro";
-    src: url("SourceCodePro-VariableFont_wght.ttf");
-    src: url("SourceCodePro-VariableFont_wght.ttf") format("ttf"),
-    url("SourceCodePro-VariableFont_wght.ttf") format("opentype"),
-    url("SourceCodePro-VariableFont_wght.ttf") format("svg");
+    src: url("JetBrainsMono[wght].ttf");
+    src: url("JetBrainsMono[wght].ttf") format("ttf"),
+    url("JetBrainsMono[wght].ttf") format("opentype"),
+    url("JetBrainsMono[wght].ttf") format("svg");
   }
   
   * {
