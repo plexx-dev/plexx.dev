@@ -8,5 +8,5 @@ FROM debian:buster-slim as runner
 WORKDIR /app
 COPY --from=builder /usr/local/cargo/bin/plexx-dev /usr/local/bin/plexx-dev
 COPY . .
-RUN ls
+
 CMD ["plexx-dev"]
