@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="/static/main.css">
+        <link rel="stylesheet" href="/static/all.min.css">
+        <title>plexx.dev</title>
+        <link rel="shortcut icon" href="/static/favicon.ico">
+    </head>
+    <body>
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+    </body>
+</html>

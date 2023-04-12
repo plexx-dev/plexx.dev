@@ -1,0 +1,15 @@
+{% extends 'layout' %}
+{% block content %}
+
+<p class="title">URLShrtner-rs</p>
+<div class="main">
+  <form method="post" action="/short/">
+    <input type="url" name="url" id="url" required>
+    <input type="submit" value="Submit">
+
+    {% block warning %}
+    {% endblock %}
+  </form>
+</div>
+
+{% endblock content %}

@@ -1,18 +1,14 @@
 @font-face{
-    font-family: "JetBrains Mono";
-    src: url("JetBrainsMono_var_weight.ttf");
-    src: url("JetBrainsMono_var_weight.ttf") format("ttf"),
-    url("JetBrainsMono_var_weight.ttf") format("opentype"),
-    url("JetBrainsMono_var_weight.ttf") format("svg");
-  }
-  
-  * {
-    font-family: "JetBrains Mono";
+    font-family: "Source Code Pro";
+    src: url("SourceCodePro-VariableFont_wght.ttf");
+    src: url("SourceCodePro-VariableFont_wght.ttf") format("ttf"),
+    url("SourceCodePro-VariableFont_wght.ttf") format("opentype"),
+    url("SourceCodePro-VariableFont_wght.ttf") format("svg");
   }
 
-html {
-    height: 100%;
-}
+  * {
+    font-family: "Source Code Pro";
+  }
 
 body {
     background-color: rgb(0,0,0);
@@ -49,7 +45,7 @@ nav {
 
 a {
     padding: .75rem;
-    color: inherit;
+    color: #fff;
     font-weight: 515;
     font-size: 1.25rem;
     text-decoration: none;
@@ -57,4 +53,12 @@ a {
 
 .link-text {
     text-decoration: underline;
+}
+
+.form {
+    vertical-align: baseline;
+    padding-top: 24vh;
+    margin: 0 auto 24vh;
+    max-width: fit-content;
+    max-height: fit-content;
 }

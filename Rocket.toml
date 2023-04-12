@@ -1,0 +1,14 @@
+[debug]
+port = 5000
+
+[release]
+cli_colors = false
+port = 80
+address = "0.0.0.0"
+
+[global]
+min_connections = 64
+max_connections = 1024
+connect_timeout = 5
+idle_timeout = 120
+limits = { form = "64 kB", json = "1 MiB" }
