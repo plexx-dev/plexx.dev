@@ -3,4 +3,4 @@
 
 [Docker Image](https://hub.docker.com/r/plexxdev/plexx.dev)
 
-No Bloat or CDNs. Just a simple Self-Hosted Webserver.
+No Bloat or CDNs. Just a simple self-hosted webserver.
