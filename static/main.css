@@ -4,7 +4,7 @@
     src: url("SourceCodePro-VariableFont_wght.ttf") format("ttf"),
     url("SourceCodePro-VariableFont_wght.ttf") format("opentype"),
     url("SourceCodePro-VariableFont_wght.ttf") format("svg");
-  }
+}
 
   * {
     font-family: "Source Code Pro";
@@ -12,6 +12,15 @@
 
 html {
     height: 100%;
+
+    scroll-behavior: smooth;
+
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+html::-webkit-scrollbar {
+    display: none;
 }
 
 body {
@@ -43,8 +52,11 @@ main {
     margin-right: auto;
 }
 
-nav {
+.links {
+    display: flex;
+    flex-wrap: wrap;
     padding: 2rem;
+    justify-content: center;
 }
 
 a {
@@ -65,4 +77,54 @@ a {
     margin: 0 auto 24vh;
     max-width: fit-content;
     max-height: fit-content;
+}
+
+.portfolio {
+    position: absolute;
+    top: 100%;
+
+    padding: 4rem;
+}
+
+.portfolio h1 {
+    font-size: 5rem;
+}
+
+.portfolio-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    gap: 2rem;
+}
+
+.portfolio-item {
+    flex: 1 45%;
+
+    max-width: 60rem;
+
+    background-color: #000;
+
+    border: 1px solid #fff;
+    border-width: 1px;
+    border-color: #fff;
+    border-radius: 1rem;
+
+    display: inline-block;
+}
+
+.portfolio-item iframe {
+    border-radius: 1rem 1rem 0 0 !important;
+}
+
+.portfolio-item img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+
+    border-radius: 1rem 1rem 0 0 !important;
+}
+
+.portfolio-item p {
+    margin: 1rem;
 }
