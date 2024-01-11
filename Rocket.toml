@@ -1,9 +1,6 @@
 [debug]
 port = 5000
 
-[default.databases.site]
-url = "site.sqlite"
-
 [release]
 cli_colors = false
 port = 80
