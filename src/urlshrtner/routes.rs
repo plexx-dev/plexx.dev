@@ -20,7 +20,7 @@ pub async fn get_url(mut db: Connection<Urls>, url_hash: String) -> Redirect {
     
     let url: Option<String> = match sqlx::query("SELECT url FROM urls WHERE url_hash = ?")
         .bind(&url_hash)
-        .fetch_one(&mut*db)
+        .fetch_one(&mut **db)
         .await {
             Ok(row) => row,
             Err(error) => {
@@ -75,7 +75,7 @@ pub async fn submit(mut db: Connection<Urls>, form: Form<Url>) -> Template {
     let url_hash = short::hash(&url);
 
     sqlx::query("INSERT INTO urls (url, url_hash) VALUES (?, ?)").bind(&url).bind(&url_hash)
-        .execute(&mut *db)
+        .execute(&mut **db)
         .await
         .ok();
 
