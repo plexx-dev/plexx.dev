@@ -4,7 +4,7 @@ COPY . .
 RUN cargo install --path .
 
 
-FROM debian:buster-slim as runner
+FROM debian:stable-slim as runner
 WORKDIR /app
 COPY --from=builder /usr/local/cargo/bin/plexx-dev /usr/local/bin/plexx-dev
 COPY . .
