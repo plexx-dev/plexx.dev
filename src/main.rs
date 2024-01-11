@@ -11,8 +11,8 @@ mod urlshrtner;
 mod error;
 
 #[derive(Database)]
-#[database("urls")]
-pub struct Urls(sqlx::MySqlPool);
+#[database("site")]
+pub struct Urls(sqlx::SqlitePool);
 
 #[get("/")]
 async fn index() -> Template {

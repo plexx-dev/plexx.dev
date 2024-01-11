@@ -12,37 +12,6 @@
     <div><a href="#portfolio"><i class="fas fa-briefcase"></i> <text class="link-text">Portfolio</text></a></div>
     <div><a href="/static/pgp.txt"><i class="fas fa-key"></i> <text class="link-text">PGP-Key</text></a></div>
     <div><a><i class="fab fa-discord"></i> <text class="link-text">plexx#0928</text></a></div >
-</nav>
-
-<div class="portfolio">
-    <h1 id="portfolio">My Work</h1>
-
-    <div class="portfolio-container">
-        <div class="portfolio-item">
-            <img src="/static/portfolio/blitzer.gif">
-            <p>Blitzer</p>
-        </div>
-        <div class="portfolio-item">
-            <img src="/static/portfolio/ticket/2.png">
-            <p>Ticket System</p>
-        </div>
-        <div class="portfolio-item">
-            <img src="/static/portfolio/admin/1.png">
-            <p>Admin Refund</p>
-        </div>
-        <div class="portfolio-item">
-            <img src="/static/portfolio/rewards/1.jpg">
-            <p>Daily Login Rewards</p>
-        </div>
-        <div class="portfolio-item">
-            <img src="/static/portfolio/warn/1.png">
-            <p>Warn System</p>
-        </div>
-        <div class="portfolio-item">
-            <img src="/static/portfolio/intro.png">
-            <p>Server Intro</p>
-        </div>
-    </div>
 </div>
 
 {% endblock content %}
