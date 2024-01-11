@@ -9,9 +9,8 @@
     <div><a href="https://steamcommunity.com/id/plexx_dev/"><i class="fab fa-steam"></i> <text class="link-text">Steam</text></a></div>
     <div><a href="https://status.plexx.dev"><i class="fas fa-server"></i> <text class="link-text">Server-Status</text></a></div>
     <div><a href="/short"><i class="fas fa-link"></i> <text class="link-text">UrlShrtner</text></a></div>
-    <div><a href="#portfolio"><i class="fas fa-briefcase"></i> <text class="link-text">Portfolio</text></a></div>
     <div><a href="/static/pgp.txt"><i class="fas fa-key"></i> <text class="link-text">PGP-Key</text></a></div>
-    <div><a><i class="fab fa-discord"></i> <text class="link-text">plexx#0928</text></a></div >
+    <div><a href="discordapp.com/users/374877266540363776"><i class="fab fa-discord"></i> <text class="link-text">plexx#0928</text></a></div >
 </div>
 
 {% endblock content %}
