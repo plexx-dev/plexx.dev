@@ -4,7 +4,7 @@
 <p class="title">URLShrtner-rs</p>
 <div class="main">
   <form method="post" action="/short/">
-    <input type="url" name="url" id="url" required>
+    <input type="url" name="url" id="url" placeholder="Insert URL here" required autofocus>
     <input type="submit" value="Submit">
 
     {% block warning %}

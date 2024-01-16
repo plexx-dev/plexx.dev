@@ -128,3 +128,31 @@ a {
 .portfolio-item p {
     margin: 1rem;
 }
+
+input[type=submit] {
+    border-width: 3px;
+    border-style: dashed;
+    border-radius: 0;
+    padding: 0.3rem;
+
+    background-color: black;
+    color: white;
+    text-size-adjust: 1rem;
+}
+
+input[type=url] {
+    border: 3px #fff;
+    border-style: none none solid none;
+
+    padding: 0.3rem;
+
+    background-color: black;
+    color: white;
+
+    font-size: large;
+    width: 45%;
+
+    &:active, &:focus {
+        outline: none;
+    }
+}
