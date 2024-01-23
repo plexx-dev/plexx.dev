@@ -102,6 +102,7 @@ impl<'r> FromRequest<'r> for FrwdIP {
     type Error = FrwdIPError;
 
     async fn from_request(req: &'r Request<'_>) -> Outcome<Self, Self::Error> {
+        println!("{:?}", &req.headers());
         match req.headers().get_one("X-Real-IP") {
             None => Outcome::Success(FrwdIP("127.0.0.1".to_string())),
             Some(user_agent) => Outcome::Success(FrwdIP(user_agent.to_string())),
