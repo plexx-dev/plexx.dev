@@ -2,6 +2,10 @@ use std::fmt;
 use std::net::IpAddr;
 
 use chrono;
+use std::fmt;
+use std::net::IpAddr;
+
+use chrono;
 
 use rocket::http::Status;
 use rocket::request::{FromRequest, Outcome};
