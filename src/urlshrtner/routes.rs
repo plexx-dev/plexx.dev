@@ -103,7 +103,7 @@ impl<'r> FromRequest<'r> for FrwdIP {
 
     async fn from_request(req: &'r Request<'_>) -> Outcome<Self, Self::Error> {
         println!("{:?}", &req.headers());
-        match req.headers().get_one("X-Real-IP") {
+        match req.headers().get_one("x-real-ip") {
             None => Outcome::Success(FrwdIP("127.0.0.1".to_string())),
             Some(user_agent) => Outcome::Success(FrwdIP(user_agent.to_string())),
             // if i need to validdate this :) Some(_) => Outcome::Error((Status::BadRequest, UserAgentError::Invalid)),
