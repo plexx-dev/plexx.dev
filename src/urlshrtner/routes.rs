@@ -105,7 +105,7 @@ impl<'r> FromRequest<'r> for FrwdIP {
         println!("{:?}", &req.headers());
         match req.headers().get_one("x-real-ip") {
             None => Outcome::Success(FrwdIP("127.0.0.1".to_string())),
-            Some(user_agent) => Outcome::Success(FrwdIP(user_agent.to_string())),
+            Some(ip) => Outcome::Success(FrwdIP(ip.to_string())),
             // if i need to validdate this :) Some(_) => Outcome::Error((Status::BadRequest, UserAgentError::Invalid)),
         }
     }
