@@ -1,6 +1,11 @@
-use rocket::*;
+use std::fmt;
+use std::net::IpAddr;
 
-use rocket::form::Form;
+use chrono;
+
+use rocket::http::Status;
+use rocket::request::{FromRequest, Outcome};
+use rocket::{form::Form, *};
 use rocket::response::Redirect;
 use rocket_dyn_templates::{Template, context};
 
@@ -15,7 +20,7 @@ use crate::Urls;
 use super::short;
 
 #[get("/<url_hash>")]
-pub async fn get_url(mut db: Connection<Urls>, url_hash: String) -> Redirect {
+pub async fn get_url(mut db: Connection<Urls>, url_hash: String, remote_addr: IpAddr, ua: UserAgent) -> Redirect {
     let fallback_url = String::from("https://plexx.dev");
     
     let url: Option<String> = match sqlx::query("SELECT url FROM urls WHERE url_hash = ?")
@@ -32,7 +37,19 @@ pub async fn get_url(mut db: Connection<Urls>, url_hash: String) -> Redirect {
        .ok();
 
     let url_str = match url {
-        Some(url_str) => url_str,
+        Some(url_str) => {
+            sqlx::query("INSERT INTO views (url_hash, ip_address, time, useragent) VALUES (?, ?, ?, ?)").bind(&url_hash).bind(&remote_addr.to_string()).bind(format!("{:?}", chrono::offset::Local::now())).bind(&ua.0)
+            .execute(&mut **db)
+            .await
+            .ok();
+
+            sqlx::query("UPDATE total_views SET total_views = total_views + 1 WHERE url_hash = ?").bind(&url_hash)
+            .execute(&mut **db)
+            .await
+            .ok();
+
+            url_str
+        },
         None => {
             println!("failed");
             fallback_url
@@ -45,6 +62,33 @@ pub async fn get_url(mut db: Connection<Urls>, url_hash: String) -> Redirect {
 #[get("/short")]
 pub async fn index() -> Template {
     Template::render("urlshrtner/index", context! {})
+}
+
+#[derive(Debug)]
+pub struct UserAgent(String);
+
+#[derive(Debug)]
+pub enum UserAgentError {
+    Missing,
+}
+
+#[rocket::async_trait]
+impl<'r> FromRequest<'r> for UserAgent {
+    type Error = UserAgentError;
+
+    async fn from_request(req: &'r Request<'_>) -> Outcome<Self, Self::Error> {
+        match req.headers().get_one("User-Agent") {
+            None => Outcome::Error((Status::BadRequest, UserAgentError::Missing)),
+            Some(user_agent) => Outcome::Success(UserAgent(user_agent.to_string())),
+            // if i need to validdate this :) Some(_) => Outcome::Error((Status::BadRequest, UserAgentError::Invalid)),
+        }
+    }
+}
+
+impl fmt::Display for UserAgent {
+    fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(formatter, "{}", self.0)
+    }
 }
 
 #[derive(FromForm, Debug, Validate)]
@@ -75,6 +119,11 @@ pub async fn submit(mut db: Connection<Urls>, form: Form<Url>) -> Template {
     let url_hash = short::hash(&url);
 
     sqlx::query("INSERT INTO urls (url, url_hash) VALUES (?, ?)").bind(&url).bind(&url_hash)
+        .execute(&mut **db)
+        .await
+        .ok();
+
+    sqlx::query("INSERT INTO total_views (url_hash, total_views) VALUES (?, ?)").bind(&url_hash).bind(0)
         .execute(&mut **db)
         .await
         .ok();

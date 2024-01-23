@@ -10,9 +10,14 @@ rocket = "0.5.0"
 rocket_dyn_templates = { version = "0.1.0", features = ["tera"] }
 sha2 = "*"
 hex = "*"
-validator = { version = "0.15", features = ["derive"] }
+validator = { version = "0.16.1", features = ["derive"] }
+chrono = "*"
+
+[dependencies.sqlx]
+version = "0.7.3"
+default-features = true
+features = ["migrate"]
 
 [dependencies.rocket_db_pools]
 version = "0.1.0"
 features = ["sqlx_mysql"]
-# features = ["sqlx_sqlite"]
