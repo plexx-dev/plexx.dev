@@ -20,7 +20,7 @@ use crate::Urls;
 use super::short;
 
 #[get("/<url_hash>")]
-pub async fn get_url(mut db: Connection<Urls>, url_hash: String, remote_addr: IpAddr, ua: UserAgent) -> Redirect {
+pub async fn get_url(mut db: Connection<Urls>, url_hash: String, remote_addr: FrwdIP, ua: UserAgent) -> Redirect {
     let fallback_url = String::from("https://plexx.dev");
     
     let url: Option<String> = match sqlx::query("SELECT url FROM urls WHERE url_hash = ?")
@@ -38,7 +38,7 @@ pub async fn get_url(mut db: Connection<Urls>, url_hash: String, remote_addr: Ip
 
     let url_str = match url {
         Some(url_str) => {
-            sqlx::query("INSERT INTO views (url_hash, ip_address, time, useragent) VALUES (?, ?, ?, ?)").bind(&url_hash).bind(&remote_addr.to_string()).bind(format!("{:?}", chrono::offset::Local::now())).bind(&ua.0)
+            sqlx::query("INSERT INTO views (url_hash, ip_address, time, useragent) VALUES (?, ?, ?, ?)").bind(&url_hash).bind(&remote_addr.0).bind(format!("{:?}", chrono::offset::Local::now())).bind(&ua.0)
             .execute(&mut **db)
             .await
             .ok();
@@ -80,6 +80,27 @@ impl<'r> FromRequest<'r> for UserAgent {
         match req.headers().get_one("User-Agent") {
             None => Outcome::Error((Status::BadRequest, UserAgentError::Missing)),
             Some(user_agent) => Outcome::Success(UserAgent(user_agent.to_string())),
+            // if i need to validdate this :) Some(_) => Outcome::Error((Status::BadRequest, UserAgentError::Invalid)),
+        }
+    }
+}
+
+#[derive(Debug)]
+pub struct FrwdIP(String);
+
+#[derive(Debug)]
+pub enum FrwdIPError {
+    Missing,
+}
+
+#[rocket::async_trait]
+impl<'r> FromRequest<'r> for FrwdIP {
+    type Error = FrwdIPError;
+
+    async fn from_request(req: &'r Request<'_>) -> Outcome<Self, Self::Error> {
+        match req.headers().get_one("X-Forwarded-For") {
+            None => Outcome::Error((Status::BadRequest, FrwdIPError::Missing)),
+            Some(user_agent) => Outcome::Success(FrwdIP(user_agent.to_string())),
             // if i need to validdate this :) Some(_) => Outcome::Error((Status::BadRequest, UserAgentError::Invalid)),
         }
     }
