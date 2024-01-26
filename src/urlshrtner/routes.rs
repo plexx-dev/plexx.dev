@@ -23,6 +23,8 @@ use super::short;
 pub async fn get_url(mut db: Connection<Urls>, url_hash: String, remote_ip: IpAddr, frwd_ip: FrwdIP, ua: UserAgent) -> Redirect {
     let fallback_url = String::from("https://plexx.dev");
     
+
+    println!("{}", &remote_ip);
     let url: Option<String> = match sqlx::query("SELECT url FROM urls WHERE url_hash = ?")
         .bind(&url_hash)
         .fetch_one(&mut **db)
@@ -102,11 +104,9 @@ impl<'r> FromRequest<'r> for FrwdIP {
     type Error = FrwdIPError;
 
     async fn from_request(req: &'r Request<'_>) -> Outcome<Self, Self::Error> {
-        println!("{:?}", &req.headers());
-        match req.headers().get_one("x-real-ip") {
+        match req.headers().get_one("x-forwarded-for") {
             None => Outcome::Success(FrwdIP("127.0.0.1".to_string())),
             Some(ip) => Outcome::Success(FrwdIP(ip.to_string())),
-            // if i need to validdate this :) Some(_) => Outcome::Error((Status::BadRequest, UserAgentError::Invalid)),
         }
     }
 }
