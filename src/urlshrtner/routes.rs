@@ -20,11 +20,9 @@ use crate::Urls;
 use super::short;
 
 #[get("/<url_hash>")]
-pub async fn get_url(mut db: Connection<Urls>, url_hash: String, remote_ip: IpAddr, frwd_ip: FrwdIP, ua: UserAgent) -> Redirect {
+pub async fn get_url(mut db: Connection<Urls>, url_hash: String, frwd_ip: FrwdIP, ua: UserAgent) -> Redirect {
     let fallback_url = String::from("https://plexx.dev");
-    
 
-    println!("{}", &remote_ip);
     let url: Option<String> = match sqlx::query("SELECT url FROM urls WHERE url_hash = ?")
         .bind(&url_hash)
         .fetch_one(&mut **db)
@@ -38,14 +36,9 @@ pub async fn get_url(mut db: Connection<Urls>, url_hash: String, remote_ip: IpAd
         .try_get(0)
        .ok();
 
-    let mut ip = frwd_ip.0;
-    if ip.starts_with("127.0.0.1") {
-        ip = remote_ip.to_string();
-    }
-
     let url_str = match url {
         Some(url_str) => {
-            sqlx::query("INSERT INTO views (url_hash, ip_address, time, useragent) VALUES (?, ?, ?, ?)").bind(&url_hash).bind(&ip).bind(format!("{:?}", chrono::offset::Local::now())).bind(&ua.0)
+            sqlx::query("INSERT INTO views (url_hash, ip_address, time, useragent) VALUES (?, ?, ?, ?)").bind(&url_hash).bind(&frwd_ip.0).bind(format!("{:?}", chrono::offset::Local::now())).bind(&ua.0)
             .execute(&mut **db)
             .await
             .ok();
