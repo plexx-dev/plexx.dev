@@ -148,6 +148,6 @@ pub async fn submit(mut db: Connection<Urls>, form: Form<Url>) -> Template {
         .ok();
 
     Template::render("urlshrtner/result", context! {
-        url: format!("plexx.dev/{}", url_hash)
+        url: format!("https://plexx.dev/{}", url_hash)
     })
 }
