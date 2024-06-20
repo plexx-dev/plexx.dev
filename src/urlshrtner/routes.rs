@@ -16,12 +16,14 @@ use rocket_db_pools::sqlx::{self, Row};
 use validator::{Validate, validate_url};
 
 use crate::Urls;
-
 use super::short;
 
-#[get("/<url_hash>")]
+#[get("/<url_hash>", rank = 2)]
 pub async fn get_url(mut db: Connection<Urls>, url_hash: String, frwd_ip: FrwdIP, ua: UserAgent) -> Redirect {
     let fallback_url = String::from("https://plexx.dev");
+    if url_hash.len() != 6 {
+        return Redirect::to(fallback_url);
+    }
 
     let url: Option<String> = match sqlx::query("SELECT url FROM urls WHERE url_hash = ?")
         .bind(&url_hash)

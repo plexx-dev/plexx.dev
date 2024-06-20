@@ -10,6 +10,7 @@ use rocket_db_pools::sqlx;
 
 mod urlshrtner;
 mod error;
+mod conway;
 
 #[derive(Database)]
 #[database("urls")]
@@ -68,6 +69,9 @@ async fn rocket() -> _ {
             urlshrtner::routes::get_url,
             urlshrtner::routes::index,
             urlshrtner::routes::submit,           
+        ])
+        .mount("/conway", routes![
+            conway::routes::index,
         ])
         .mount("/static", FileServer::from("static"))
         .register("/", catchers![default_catcher])
