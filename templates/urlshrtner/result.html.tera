@@ -1,6 +1,0 @@
-{% extends 'layout' %}
-{% block content %}
-
-<p class="link title" href="{{url}}">{{ url }}</p>
-
-{% endblock content %}

@@ -8,7 +8,7 @@
     <div><a href="mailto:plexx@plexx.dev"><i class="fas fa-envelope"></i> <text class="link-text">Email</text></a></div>
     <div><a href="https://steamcommunity.com/id/plexx_dev/"><i class="fab fa-steam"></i> <text class="link-text">Steam</text></a></div>
     <div><a href="https://status.plexx.dev"><i class="fas fa-server"></i> <text class="link-text">Server-Status</text></a></div>
-    <div><a href="/short"><i class="fas fa-link"></i> <text class="link-text">UrlShrtner</text></a></div>
+    <div><a href="/games"><i class="fas fa-gamepad"></i> <text class="link-text">Games</text></a></div>
     <div><a href="/static/pgp.txt"><i class="fas fa-key"></i> <text class="link-text">PGP-Key</text></a></div>
     <div><a href="https://discordapp.com/users/374877266540363776"><i class="fab fa-discord"></i> <text class="link-text">plexx.dev</text></a></div >
 </div>

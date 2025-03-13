@@ -1,0 +1,10 @@
+{% extends 'layout' %}
+{% block content %}
+
+<p class="title">Games</p>
+<div class="links">
+    <div><a href="/games/conway"><i class="fa fa-gem"></i> <text class="link-text">Conway</text></a></div>
+    <div><a href="/games/snake"><i class="fa fa-star"></i> <text class="link-text">Snake</text></a></div>
+</div>
+
+{% endblock content %}

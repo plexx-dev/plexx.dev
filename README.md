@@ -4,7 +4,3 @@
 [Docker Image](https://hub.docker.com/r/plexxdev/plexx.dev)
 
 No Bloat or CDNs. Just a simple self-hosted webserver.
-
-## UrlShrtner-rs
-### Database Schema:
-![mysql_schema](mysql_schema.png)
