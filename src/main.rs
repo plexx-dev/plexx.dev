@@ -6,7 +6,7 @@ use rocket_dyn_templates::{Template, context};
 mod error;
 mod conway;
 mod games;
-
+mod snake;
 
 #[get("/")]
 async fn index() -> Template {
@@ -29,6 +29,9 @@ async fn rocket() -> _ {
         ])
         .mount("/games/", routes![
             games::index,
+        ])
+        .mount("/games/snake", routes![
+            snake::routes::index,
         ])
         .mount("/games/conway", routes![
             conway::routes::index,

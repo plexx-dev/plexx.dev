@@ -4,7 +4,7 @@
 <p class="title">plexx</p>
 <p class="text">Professional™ Developer</p>
 <div class="links">
-    <div><a href="https://github.com/plexx-dev"><i class="fab fa-github"></i> <text class="link-text">Github</text></a></div>
+    <div><a href="https://github.com/plexxdev"><i class="fab fa-github"></i> <text class="link-text">Github</text></a></div>
     <div><a href="mailto:plexx@plexx.dev"><i class="fas fa-envelope"></i> <text class="link-text">Email</text></a></div>
     <div><a href="https://steamcommunity.com/id/plexx_dev/"><i class="fab fa-steam"></i> <text class="link-text">Steam</text></a></div>
     <div><a href="https://status.plexx.dev"><i class="fas fa-server"></i> <text class="link-text">Server-Status</text></a></div>
