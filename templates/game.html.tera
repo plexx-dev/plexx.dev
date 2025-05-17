@@ -1,0 +1,9 @@
+{% extends 'layout' %}
+{% block content %}
+
+<p class="title">Conway</p>
+<script type="module" src="/static/wasm-game-of-life/index.js"></script>
+<div class="game-container" id="container">
+</div>
+
+{% endblock content %}
