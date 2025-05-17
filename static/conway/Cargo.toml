@@ -1,5 +1,5 @@
 [package]
-name = "game-of-life"
+name = "conwy"
 version = "0.1.0"
 authors = ["plexx-dev <plexx@plexx.dev>"]
 edition = "2018"
