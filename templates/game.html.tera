@@ -2,7 +2,8 @@
 {% block content %}
 
 <p class="title">Conway</p>
-<script type="module" src="/static/conwy/index.js"></script>
+<button id="greet-button">Greet</button>
+<script type="module" src="/static/conway/index.js"></script>
 <div class="game-container" id="container">
 </div>
 

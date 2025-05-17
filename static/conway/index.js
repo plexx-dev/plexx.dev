@@ -1,11 +1,10 @@
-// Import our outputted wasm ES6 module
-// Which, export default's, an initialization function
-//import greeter from "/static/conwy/pkg/wasm_game_of_life.js";
-//
-//greeter("moin");
+import init, { greet } from './pkg/conway.js';
 
-import { greeter } from '/static/conwy/pkg/wasm_game_of_life.js3'
+async function run() {
+    await init(); // Initialize WASM module
+    document.getElementById('greet-button').addEventListener('click', () => {
+        alert(greet("Rust Developer"));
+    });
+}
 
-let greeting = greeter('Grafbase')
-
-document.getElementById('container').innerText = greeting
+run();

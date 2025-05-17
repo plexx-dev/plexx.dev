@@ -1,11 +1,7 @@
 use wasm_bindgen::prelude::*;
 
+// Expose this function to JavaScript
 #[wasm_bindgen]
-pub fn greeter(name: &str) -> Result<String, JsError> {
-    Ok(format!("Hello {name}!"))
-}
-
-#[wasm_bindgen(start)]
-fn main() {
-    console_error_panic_hook::set_once();
+pub fn greet(name: &str) -> String {
+    format!("Hello, {}! Welcome to Rust WASM.", name)
 }

@@ -1,5 +1,5 @@
 use rocket::fairing::{Fairing, Info, Kind};
-use rocket::shield::{NoSniff, Referrer, Shield};
+use rocket::shield::{NoSniff, Shield};
 use rocket::{http::ContentType, *};
 use rocket::fs::FileServer;
 use rocket::http::Status;
