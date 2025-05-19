@@ -2,6 +2,7 @@
 {% block content %}
 
 <div class="game-container">
+    <button id="play-pause"></button>
     <canvas id="conway-canvas"></canvas>
     <script type="module" src="/static/conway/index.js"></script>
 </div>
