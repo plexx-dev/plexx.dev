@@ -18,5 +18,5 @@ inotifywait --recursive --monitor --format "%e %w%f" \
 --event modify,move,create,delete ./src \
 | while read changed; do
     echo $changed
-    execute "wasm-pack build --target web"
+    execute "clear; wasm-pack build --target web"
 done

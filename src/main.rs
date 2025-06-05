@@ -63,6 +63,7 @@ async fn rocket() -> _ {
             conway::routes::index,
         ])
         .mount("/static", FileServer::from("static"))
+        .mount("/game_files", FileServer::from("game_files"))
         //.mount("/", routes![serve_static]) // Custom static file handler
         .register("/", catchers![default_catcher])
         .attach(Template::fairing())

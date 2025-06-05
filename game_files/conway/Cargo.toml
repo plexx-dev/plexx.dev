@@ -16,6 +16,8 @@ wasm-bindgen = "0.2.100"
 # all the `std::fmt` and `std::panicking` infrastructure, so isn't great for
 # code size when deploying.
 console_error_panic_hook = { version = "0.1.7", optional = true }
+js-sys = "0.3"
+fixedbitset = "*"
 
 [dev-dependencies]
 wasm-bindgen-test = "0.3.34"

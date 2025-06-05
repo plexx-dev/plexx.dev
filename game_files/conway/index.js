@@ -1,15 +1,12 @@
 import init, { Universe } from './pkg/conway.js';
-//import { memory } from "./pkg/conway_bg.wasm";
-
 
 async function run() {
     let rustWasm = await init(); // Initialize WASM module
-    let memory = new Uint8Array(rustWasm.memory);
 
-    const CELL_SIZE = 15;
-    const GRID_COLOR = "#CCCCCC";
-    const DEAD_COLOR = "#FFFFFF";
-    const ALIVE_COLOR = "#000000";
+    const CELL_SIZE = 5;
+    const GRID_COLOR = "#333333";
+    const DEAD_COLOR = "#000000";
+    const ALIVE_COLOR = "#FFFFFF";
 
     // These must match `Cell::Alive` and `Cell::Dead` in `src/lib.rs`.
     const DEAD = 0;
@@ -30,6 +27,8 @@ async function run() {
     let animationId = null;
 
     const renderLoop = () => {
+        fps.render();
+
         universe.tick();
 
         drawCells();
@@ -64,17 +63,18 @@ async function run() {
 
     const drawCells = () => {
         const cellsPtr = universe.cells();
-        const cells = new Uint8Array(memory.buffer, cellsPtr, width * height);
+        const cells = new Uint8Array(rustWasm.memory.buffer, cellsPtr, width * height);
 
-        ctx.beginPath();
+        ctx.beginPath();2
 
+        // Alive cells.
+        ctx.fillStyle = ALIVE_COLOR;
         for (let row = 0; row < height; row++) {
             for (let col = 0; col < width; col++) {
                 const idx = getIndex(row, col);
-
-                ctx.fillStyle = cells[idx] === DEAD
-                    ? DEAD_COLOR
-                    : ALIVE_COLOR;
+                if (cells[idx] !== ALIVE) {
+                    continue;
+                }
 
                 ctx.fillRect(
                     col * (CELL_SIZE + 1) + 1,
@@ -84,6 +84,25 @@ async function run() {
                 );
             }
         }
+
+        // Dead cells.
+        ctx.fillStyle = DEAD_COLOR;
+        for (let row = 0; row < height; row++) {
+            for (let col = 0; col < width; col++) {
+                const idx = getIndex(row, col);
+                if (cells[idx] !== DEAD) {
+                    continue;
+                }
+
+                ctx.fillRect(
+                    col * (CELL_SIZE + 1) + 1,
+                    row * (CELL_SIZE + 1) + 1,
+                    CELL_SIZE,
+                    CELL_SIZE
+                );
+            }
+        }
+
 
         ctx.stroke();
     };
@@ -131,6 +150,50 @@ async function run() {
         drawGrid();
 
     });
+
+    const fps = new class {
+        constructor() {
+            this.fps = document.getElementById("fps");
+            this.frames = [];
+            this.lastFrameTimeStamp = performance.now();
+        }
+
+        render() {
+            // Convert the delta time since the last frame render into a measure
+            // of frames per second.
+            const now = performance.now();
+            const delta = now - this.lastFrameTimeStamp;
+            this.lastFrameTimeStamp = now;
+            const fps = 1 / delta * 1000;
+
+            // Save only the latest 100 timings.
+            this.frames.push(fps);
+            if (this.frames.length > 100) {
+                this.frames.shift();
+            }
+
+            // Find the max, min, and mean of our 100 latest timings.
+            let min = Infinity;
+            let max = -Infinity;
+            let sum = 0;
+            for (let i = 0; i < this.frames.length; i++) {
+                sum += this.frames[i];
+                min = Math.min(this.frames[i], min);
+                max = Math.max(this.frames[i], max);
+            }
+            let mean = sum / this.frames.length;
+
+            // Render the statistics.
+            this.fps.textContent = `
+            Frames per Second:
+                    latest = ${Math.round(fps)}
+            avg of last 100 = ${Math.round(mean)}
+            min of last 100 = ${Math.round(min)}
+            max of last 100 = ${Math.round(max)}
+            `.trim();
+        }
+    };
+
 
     play();
 }
