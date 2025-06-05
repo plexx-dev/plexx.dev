@@ -1,5 +1,5 @@
 [debug]
-port = 5000
+port = 5001
 
 [release]
 cli_colors = false

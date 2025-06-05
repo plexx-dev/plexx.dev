@@ -1,6 +1,7 @@
 use rocket::get;
+use rocket_dyn_templates::{context, Template};
 
 #[get("/")]
-pub async fn index() -> String {
-    "gaming".to_string()
+pub async fn index() -> Template {
+    Template::render("conway", context! {})
 }
