@@ -4,6 +4,7 @@
 <div class="game-container">
 <div id="fps"></div>
     <button id="play-pause"></button>
+    <button id="clear">clear</button>
     <canvas id="conway-canvas"></canvas>
     <script type="module" src="/game_files/conway/index.js"></script>
 </div>

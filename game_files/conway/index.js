@@ -65,7 +65,7 @@ async function run() {
         const cellsPtr = universe.cells();
         const cells = new Uint8Array(rustWasm.memory.buffer, cellsPtr, width * height);
 
-        ctx.beginPath();2
+        ctx.beginPath(); 2
 
         // Alive cells.
         ctx.fillStyle = ALIVE_COLOR;
@@ -107,6 +107,15 @@ async function run() {
         ctx.stroke();
     };
 
+    const clearButton = document.getElementById("clear");
+
+    clearButton.addEventListener("click", event => {
+        universe.clear();
+
+        drawCells();
+        drawGrid();
+    })
+
     const playPauseButton = document.getElementById("play-pause");
 
     const isPaused = () => {
@@ -132,7 +141,7 @@ async function run() {
         }
     });
 
-    canvas.addEventListener("click", event => {
+    canvas.addEventListener("mousedown", event => {
         const boundingRect = canvas.getBoundingClientRect();
 
         const scaleX = canvas.width / boundingRect.width;
@@ -144,7 +153,15 @@ async function run() {
         const row = Math.min(Math.floor(canvasTop / (CELL_SIZE + 1)), height - 1);
         const col = Math.min(Math.floor(canvasLeft / (CELL_SIZE + 1)), width - 1);
 
-        universe.toggle_cell(row, col);
+        if (event.button == 0) { // left click for mouse
+            universe.add_glider(row, col)
+        } else if (event.button == 1) { // wheel click for mouse
+            universe.toggle_cell(row, col);
+        } else if (event.button == 2) {   // right click for mouse
+            //TODO
+        }
+
+        
 
         drawCells();
         drawGrid();
