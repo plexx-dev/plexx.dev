@@ -1,0 +1,6 @@
+{% extends 'layout' %}
+{% block content %}
+
+<p class="title">coming soon</p>
+
+{% endblock content %}
