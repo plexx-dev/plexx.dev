@@ -65,7 +65,7 @@ async function run() {
         const cellsPtr = universe.cells();
         const cells = new Uint8Array(rustWasm.memory.buffer, cellsPtr, width * height);
 
-        ctx.beginPath(); 2
+        ctx.beginPath();
 
         // Alive cells.
         ctx.fillStyle = ALIVE_COLOR;
