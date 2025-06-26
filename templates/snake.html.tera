@@ -1,0 +1,10 @@
+{% extends 'game_layout' %}
+{% block content %}
+
+<div class="game-container">
+    <canvas id="snake-canvas"></canvas>
+    <p id="start-text">press any arrowkey to start</p>
+    <script type="module" src="/game_files/snake/index.js"></script>
+</div>
+
+{% endblock content %}
