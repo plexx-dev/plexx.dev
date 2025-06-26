@@ -123,8 +123,8 @@ impl Universe {
         let mut next = self.cells.clone();
 
         let id = self.get_index(4, 7);
-        assert_eq!(self.get_row(id) = 4);
-        assert_eq!(self.get_column(id) = 7);
+        assert_eq!(self.get_row(id), 4);
+        assert_eq!(self.get_column(id), 7); 
 
         //the last element of the array is the snake head
         //let next_pos = match self.direction {
