@@ -1,4 +1,4 @@
-import init, { Universe } from './pkg/conway.js';
+import init, { Universe } from './pkg/snake.js';
 
 async function run() {
     let rustWasm = await init(); // Initialize WASM module
@@ -20,7 +20,6 @@ async function run() {
 
     universe.spawn_snake();
 
-
     // Initialize the canvas with room for all of our cells and a 1px border
     // around each of them.
     const canvas = document.getElementById("snake-canvas");
@@ -31,11 +30,22 @@ async function run() {
 
     let animationId = null;
 
-    const renderLoop = () => {
-        universe.tick();
+    const frameDuration = 1000 / universe.get_speed(); // in milliseconds
+    let lastTime = performance.now();
 
-        drawCells();
-        drawGrid();
+    const renderLoop = () => {
+        const now = performance.now();
+        const elapsed = now - lastTime;
+
+        if (elapsed >= frameDuration) {
+            lastTime = now;
+            universe.tick();
+
+            drawCells();
+            drawGrid();
+
+            document.getElementById('score').innerText = `Score: ${universe.get_score()}`;
+        }
 
         animationId = requestAnimationFrame(renderLoop);
     };
@@ -128,10 +138,38 @@ async function run() {
         ctx.stroke();
     };
 
-    const playText = document.getElementById("start-text");
+    document.addEventListener('keydown', (event) => {
+        let direction = -1;
+        
+        switch(event.key.toLowerCase()) {
+            case 'arrowup':
+            case 'w':
+                universe.change_direction(0);
+                break;
+            case 'arrowright':
+            case 'd':
+                universe.change_direction(1);
+                break;
+            case 'arrowdown':
+            case 's':
+                universe.change_direction(2);
+                break;
+            case 'arrowleft':
+            case 'a':
+                universe.change_direction(3);
+                break;
+        }
+        
+        if (direction !== -1) {
+            //event.preventDefault(); // Prevent default browser actions (like scrolling)
+            //callback(direction);
+        }
+    });
+
+    const playText = document.getElementById("start");
 
     playText.addEventListener("click", event => {
-        //TOOD
+        universe.tick();
     })
 
     const isPaused = () => {
