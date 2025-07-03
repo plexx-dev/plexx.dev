@@ -7,6 +7,7 @@ async function run() {
     const GRID_COLOR = "#333333";
     const DEAD_COLOR = "#000000";
     const ALIVE_COLOR = "#FFFFFF";
+    const ALIVE_HEAD_COLOR = "#00FF00";
     const APPLE_COLOR = "#FF0000"
 
     // These must match `Cell::Alive` and `Cell::Dead` in `src/lib.rs`.
@@ -19,6 +20,7 @@ async function run() {
     const height = universe.height();
 
     universe.spawn_snake();
+    universe.spawn_apple();
 
     // Initialize the canvas with room for all of our cells and a 1px border
     // around each of them.
@@ -80,12 +82,25 @@ async function run() {
 
         ctx.beginPath();
 
+        //SNAKE HEAD
+        ctx.fillStyle = ALIVE_HEAD_COLOR;
+        let head_pos = universe.get_snake_head();
+        let row = Math.floor(head_pos / width);
+        let col = head_pos % width
+
+        ctx.fillRect(
+            col * (CELL_SIZE + 1) + 1,
+            row * (CELL_SIZE + 1) + 1,
+            CELL_SIZE,
+            CELL_SIZE
+        );
+
         // Alive cells.
         ctx.fillStyle = ALIVE_COLOR;
         for (let row = 0; row < height; row++) {
             for (let col = 0; col < width; col++) {
                 const idx = getIndex(row, col);
-                if (cells[idx] !== ALIVE) {
+                if (cells[idx] !== ALIVE || idx == head_pos) {
                     continue;
                 }
 
@@ -116,7 +131,7 @@ async function run() {
             }
         }
 
-        // Dead cells.
+        // Apple cells.
         ctx.fillStyle = APPLE_COLOR;
         for (let row = 0; row < height; row++) {
             for (let col = 0; col < width; col++) {
@@ -135,13 +150,43 @@ async function run() {
         }
 
 
+
+
         ctx.stroke();
     };
 
+    const start_text = document.getElementById("start-text");
+
     document.addEventListener('keydown', (event) => {
         let direction = -1;
-        
-        switch(event.key.toLowerCase()) {
+
+        if (universe.get_is_paused()) {
+            switch (event.key.toLowerCase()) {
+                case 'arrowup':
+                case 'w':
+                case 'arrowright':
+                case 'd':
+                case 'arrowdown':
+                case 's':
+                case 'arrowleft':
+                case 'a':
+                case ' ':
+                    universe.start_stop_toggle();
+                    start_text.classList.toggle('hidden');
+                    break;
+            }
+
+            return;
+        } else {
+            switch (event.key.toLowerCase()) {
+                case ' ':
+                    universe.start_stop_toggle();
+                    start_text.classList.toggle('hidden');
+                    break;
+            }
+        }
+
+        switch (event.key.toLowerCase()) {
             case 'arrowup':
             case 'w':
                 universe.change_direction(0);
@@ -159,33 +204,21 @@ async function run() {
                 universe.change_direction(3);
                 break;
         }
-        
+
         if (direction !== -1) {
             //event.preventDefault(); // Prevent default browser actions (like scrolling)
             //callback(direction);
         }
     });
 
-    const playText = document.getElementById("start");
+    const play_pause = document.getElementById("start");
 
-    playText.addEventListener("click", event => {
-        universe.tick();
+    play_pause.addEventListener("click", event => {
+        universe.start_stop_toggle();
+        start_text.classList.toggle('hidden');
     })
 
-    const isPaused = () => {
-        return animationId === null;
-    };
-
-    const play = () => {
-        renderLoop();
-    };
-
-    const pause = () => {
-        cancelAnimationFrame(animationId);
-        animationId = null;
-    };
-
-    play();
+    renderLoop();
 }
 
 run();

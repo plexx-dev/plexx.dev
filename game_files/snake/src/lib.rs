@@ -41,7 +41,8 @@ pub struct Universe {
     direction: Direction,
     score: u32,
     speed: u32,
-    rng: SmallRng
+    rng: SmallRng,
+    is_paused: bool,
 }
 
 /// Private methods.
@@ -57,14 +58,15 @@ impl Universe {
         (row, col)
     }
 
-    fn spawn_apple(&mut self) {
-        let mut next_apple = self.rng.gen_range(0..(self.width() * self.width())) as usize;
-
-        while self.snake_pos.contains(&next_apple) {
-            next_apple = self.rng.gen_range(0..(self.width() * self.width())) as usize;
+    fn clear(&mut self) {
+        for element in self.cells.iter_mut() {
+            *element = Cell::Void;
         }
 
-        self.cells[next_apple] = Cell::Apple;
+        self.snake_pos.drain(..);
+
+        self.score = 0;
+        self.speed = 5;
     }
 }
 
@@ -84,6 +86,7 @@ impl Universe {
         let score = 0;
         let speed = 3;
         let rng = SmallRng::from_entropy();
+        let is_paused = true;
 
         Universe {
             width,
@@ -94,6 +97,25 @@ impl Universe {
             score,
             speed,
             rng,
+            is_paused,
+        }
+    }
+
+    pub fn spawn_apple(&mut self) {
+        let mut next_apple = self.rng.gen_range(0..(self.width() * self.width())) as usize;
+
+        while self.snake_pos.contains(&next_apple) {
+            next_apple = self.rng.gen_range(0..(self.width() * self.width())) as usize;
+        }
+
+        self.cells[next_apple] = Cell::Apple;
+    }
+
+    pub fn start_stop_toggle(&mut self) {
+        if self.is_paused {
+            self.is_paused = false;
+        } else {
+            self.is_paused = true;
         }
     }
 
@@ -107,8 +129,10 @@ impl Universe {
 
         self.cells[idx + 1] = Cell::Snake;
         self.snake_pos.push(idx + 1);
+    }
 
-        self.spawn_apple();
+    pub fn get_snake_head(&self) -> usize {
+        *self.snake_pos.last().unwrap()
     }
 
     pub fn width(&self) -> u32 {
@@ -124,6 +148,10 @@ impl Universe {
     }
 
     pub fn tick(&mut self) {
+        if self.is_paused {
+            return;
+        }
+
         let mut next = self.cells.clone();
 
         //the last element of the array is the snake head
@@ -155,37 +183,33 @@ impl Universe {
                 next[next_snake_head] = Cell::Snake;
                 self.snake_pos.push(next_snake_head);
                 self.snake_pos.remove(0);
+
+                next[*snake_tail] = Cell::Void;
+                self.cells = next;
             }
             Cell::Snake => {
                 //GAME OVER
                 self.clear();
+                self.spawn_snake();
+                self.spawn_apple();
             }
             Cell::Apple => {
                 self.score += 1;
-                self.speed += 1;
+                self.speed += 2;
 
                 next[next_snake_head] = Cell::Snake;
-                self.spawn_apple();
                 self.snake_pos.push(next_snake_head);
 
+                next[*snake_tail] = Cell::Void;
+                self.cells = next;
+
+                self.spawn_apple();
             }
         }
-
-        next[*snake_tail] = Cell::Void;
-
-        self.cells = next;
     }
 
-    pub fn clear(&mut self) {
-        for row in 0..self.height {
-            for col in 0..self.width {
-                let idx = self.get_index(row, col);
-                self.cells[idx] = Cell::Void;
-            }
-        }
-
-        self.score = 0;
-        self.speed = 5;
+    pub fn get_is_paused(&self) -> bool {
+        self.is_paused
     }
 
     pub fn get_score(&self) -> u32 {

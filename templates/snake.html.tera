@@ -4,9 +4,9 @@
 <div class="game-container">
     <p id="score"></p>
     <canvas id="snake-canvas"></canvas>
-    <p id="start-text">press any arrowkey to start</p>
-    <button id="start">pause</button>
+    <button id="start" class="button">start/stop</button>
     <script type="module" src="/game_files/snake/index.js"></script>
 </div>
+<p id="start-text">press any arrowkey / wasd or space to start</p>
 
 {% endblock content %}
