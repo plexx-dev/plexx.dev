@@ -1,13 +1,10 @@
 @font-face {
-    font-family: "Source Code Pro";
-    src: url("SourceCodePro-VariableFont_wght.ttf");
-    src: url("SourceCodePro-VariableFont_wght.ttf") format("ttf"),
-        url("SourceCodePro-VariableFont_wght.ttf") format("opentype"),
-        url("SourceCodePro-VariableFont_wght.ttf") format("svg");
+    font-family: "JetBrains Mono";
+    src: url("webfonts/JetBrainsMono-Regular.woff2");
 }
 
 * {
-    font-family: "Source Code Pro";
+    font-family: "JetBrains Mono";
 }
 
 html {
@@ -186,4 +183,12 @@ input[type=url] {
     background-color: black;
     color: white;
     text-size-adjust: 1rem;
+}
+
+.icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    vertical-align: middle;
+    margin-right: .7rem;
+    filter: invert(1);
 }

@@ -4,13 +4,41 @@
 <p class="title">plexx</p>
 <p class="text">Professional™ Developer</p>
 <div class="links">
-    <div><a href="https://github.com/plexx-dev"><i class="fab fa-github"></i> <text class="link-text">Github</text></a></div>
-    <div><a href="mailto:plexx@plexx.dev"><i class="fas fa-envelope"></i> <text class="link-text">Email</text></a></div>
-    <div><a href="https://steamcommunity.com/id/plexxdev/"><i class="fab fa-steam"></i> <text class="link-text">Steam</text></a></div>
-    <div><a href="https://status.plexx.dev"><i class="fas fa-server"></i> <text class="link-text">Server-Status</text></a></div>
-    <div><a href="/games"><i class="fas fa-gamepad"></i> <text class="link-text">Games</text></a></div>
-    <div><a href="/static/pgp.txt"><i class="fas fa-key"></i> <text class="link-text">PGP-Key</text></a></div>
-    <div><a href="https://discordapp.com/users/374877266540363776"><i class="fab fa-discord"></i> <text class="link-text">plexx.dev</text></a></div >
+    <div>
+        <a href="https://github.com/plexx-dev">
+            <img class="icon" src="/static/icons/github-brands-solid.svg"><text class="link-text">Github</text>
+        </a>
+    </div>
+    <div>
+        <a href="mailto:plexx@plexx.dev">
+            <img class="icon" src="/static/icons/envelope-solid.svg"><text class="link-text">Email</text>
+        </a>
+    </div>
+    <div>
+        <a href="https://steamcommunity.com/id/plexxdev/">
+            <img class="icon" src="/static/icons/steam-brands-solid.svg"><text class="link-text">Steam</text>
+        </a>
+    </div>
+    <div>
+        <a href="https://status.plexx.dev">
+            <img class="icon" src="/static/icons/server-solid.svg"><text class="link-text">Server-Status</text>
+        </a>
+    </div>
+    <div>
+        <a href="/games">
+            <img class="icon" src="/static/icons/gamepad-solid.svg"><text class="link-text">Games</text>
+        </a>
+    </div>
+    <div>
+        <a href="/static/pgp.txt">
+            <img class="icon" src="/static/icons/key-solid.svg"><text class="link-text">PGP-Key</text>
+        </a>
+    </div>
+    <div>
+        <a href="https://discordapp.com/users/374877266540363776">
+            <img class="icon" src="/static/icons/discord-brands-solid.svg"></i><text class="link-text">plexx.dev</text>
+        </a>
+    </div >
 </div>
 
 {% endblock content %}

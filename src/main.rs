@@ -8,6 +8,7 @@ mod error;
 mod conway;
 mod games;
 mod snake;
+mod ping_pong;
 
 #[get("/")]
 async fn index() -> Template {
@@ -40,6 +41,9 @@ async fn rocket() -> _ {
         ])
         .mount("/games/conway", routes![
             conway::routes::index,
+        ])
+        .mount("/games/ping_pong", routes![
+            ping_pong::routes::index,
         ])
         .mount("/static", FileServer::from("static"))
         .mount("/game_files", FileServer::from("game_files"))

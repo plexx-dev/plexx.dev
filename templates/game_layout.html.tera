@@ -6,7 +6,6 @@
     <meta http-equiv="Content-Security-Policy"
         content="default-src 'self' 'wasm-unsafe-eval'; img-src 'self'; child-src 'none'; frame-src https://www.youtu.be;">
     <link rel="stylesheet" href="/static/main.css">
-    <link rel="stylesheet" href="/static/all.min.css">
     <link rel="shortcut icon" href="/static/favicon.ico">
     <title>plexx.dev</title>
 </head>

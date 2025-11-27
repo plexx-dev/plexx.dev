@@ -3,8 +3,15 @@
 
 <p class="title">Games</p>
 <div class="links">
-    <div><a href="/games/conway"><i class="fa fa-gem"></i> <text class="link-text">Conway</text></a></div>
-    <div><a href="/games/snake"><i class="fa fa-star"></i> <text class="link-text">Snake</text></a></div>
+    <div><a href="/games/conway">
+        <img class="icon" src="/static/icons/rocket-solid.svg"><text class="link-text">Conway</text>
+    </a></div>
+    <div><a href="/games/snake">
+        <img class="icon" src="/static/icons/worm-solid.svg"><text class="link-text">Snake</text>
+    </a></div>
+    <div><a href="/games/ping_pong">
+        <img class="icon" src="/static/icons/table-tennis-paddle-ball-solid.svg"><text class="link-text">Ping Pong</text>
+    </a></div>
 </div>
 
 {% endblock content %}
