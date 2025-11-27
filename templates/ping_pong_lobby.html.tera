@@ -1,0 +1,15 @@
+{% extends 'layout' %}
+{% block content %}
+
+<p class="title">Lobby's</p>
+<div>
+    <div class="ping_pong_header">
+        <button id="start" class="button">start/stop</button>
+    </div>
+
+    {% for s in lobbys %}
+    <p>{{ s }}</p>
+    {% endfor %}
+</div>
+
+{% endblock content %}
