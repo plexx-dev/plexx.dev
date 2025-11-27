@@ -1,15 +1,15 @@
-FROM rust:1.87 as builder
+FROM rust:latest as builder
 WORKDIR /app
 COPY . .
 RUN cargo install --path .
 
-FROM rust:1.87 as builder-wasm-conway
+FROM rust:latest as builder-wasm-conway
 WORKDIR /app/game_files/conway
 COPY ./game_files/conway .
 RUN cargo install wasm-pack
 RUN wasm-pack build --target web
 
-FROM rust:1.87 as builder-wasm-snake
+FROM rust:latest as builder-wasm-snake
 WORKDIR /app/game_files/snake
 COPY ./game_files/snake .
 RUN cargo install wasm-pack
