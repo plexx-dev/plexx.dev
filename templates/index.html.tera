@@ -6,39 +6,53 @@
 <div class="links">
     <div>
         <a href="https://github.com/plexx-dev">
-            <img class="icon" src="/static/icons/github-brands-solid.svg"><text class="link-text">Github</text>
+            <svg class="icon">
+                <use href="/static/icons/index_icons.svg#github"></use>
+            </svg><text class="link-text">Github</text>
         </a>
     </div>
     <div>
         <a href="mailto:plexx@plexx.dev">
-            <img class="icon" src="/static/icons/envelope-solid.svg"><text class="link-text">Email</text>
+            <svg class="icon">
+                <use href="/static/icons/index_icons.svg#email"></use>
+            </svg><text class="link-text">Email</text>
         </a>
     </div>
     <div>
         <a href="https://steamcommunity.com/id/plexxdev/">
-            <img class="icon" src="/static/icons/steam-brands-solid.svg"><text class="link-text">Steam</text>
+            <svg class="icon">
+                <use href="/static/icons/index_icons.svg#steam"></use>
+            </svg><text class="link-text">Steam</text>
         </a>
     </div>
     <div>
         <a href="https://status.plexx.dev">
-            <img class="icon" src="/static/icons/server-solid.svg"><text class="link-text">Server-Status</text>
+            <svg class="icon">
+                <use href="/static/icons/index_icons.svg#server-status"></use>
+            </svg><text class="link-text">Server-Status</text>
         </a>
     </div>
     <div>
         <a href="/games">
-            <img class="icon" src="/static/icons/gamepad-solid.svg"><text class="link-text">Games</text>
+            <svg class="icon">
+                <use href="/static/icons/index_icons.svg#games"></use>
+            </svg><text class="link-text">Games</text>
         </a>
     </div>
     <div>
         <a href="/static/pgp.txt">
-            <img class="icon" src="/static/icons/key-solid.svg"><text class="link-text">PGP-Key</text>
+            <svg class="icon">
+                <use href="/static/icons/index_icons.svg#key"></use>
+            </svg><text class="link-text">PGP-Key</text>
         </a>
     </div>
     <div>
         <a href="https://discordapp.com/users/374877266540363776">
-            <img class="icon" src="/static/icons/discord-brands-solid.svg"></i><text class="link-text">plexx.dev</text>
+            <svg class="icon">
+                <use href="/static/icons/index_icons.svg#discord"></use>
+            </svg></i><text class="link-text">plexx.dev</text>
         </a>
-    </div >
+    </div>
 </div>
 
 {% endblock content %}
