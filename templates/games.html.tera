@@ -4,13 +4,19 @@
 <p class="title">Games</p>
 <div class="links">
     <div><a href="/games/conway">
-        <img class="icon" src="/static/icons/rocket-solid.svg"><text class="link-text">Conway</text>
+        <svg class="icon">
+            <use href="/static/icons/games_icons.svg#conway"></use>
+        </svg><text class="link-text">Conway</text>
     </a></div>
     <div><a href="/games/snake">
-        <img class="icon" src="/static/icons/worm-solid.svg"><text class="link-text">Snake</text>
+        <svg class="icon">
+            <use href="/static/icons/games_icons.svg#snake"></use>
+        </svg><text class="link-text">Snake</text>
     </a></div>
     <div><a href="/games/ping_pong">
-        <img class="icon" src="/static/icons/table-tennis-paddle-ball-solid.svg"><text class="link-text">Ping Pong</text>
+        <svg class="icon">
+            <use href="/static/icons/games_icons.svg#pong"></use>
+        </svg><text class="link-text">Ping Pong</text>
     </a></div>
 </div>
 
