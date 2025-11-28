@@ -3,10 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="Content-Security-Policy"
-            content="default-src 'self'; img-src 'self'; child-src 'none'; frame-src https://www.youtu.be;">
+            content="default-src 'self'; img-src 'self'; child-src 'none'; frame-src 'none';">
         <link rel="stylesheet" href="/static/main.css">
         <link rel="shortcut icon" href="/static/favicon.ico">
-        <title>rust <3</title>
+        <title>rust &lt3</title>
     </head>
     <body>
         <main>
