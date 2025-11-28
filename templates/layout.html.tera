@@ -6,7 +6,7 @@
             content="default-src 'self'; img-src 'self'; child-src 'none'; frame-src https://www.youtu.be;">
         <link rel="stylesheet" href="/static/main.css">
         <link rel="shortcut icon" href="/static/favicon.ico">
-        <title>plexx.dev</title>
+        <title>rust <3</title>
     </head>
     <body>
         <main>
