@@ -8,49 +8,42 @@
         <a href="https://github.com/plexx-dev">
             <svg class="icon">
                 <use href="/static/icons/index_icons.svg#github"></use>
-            </svg><text class="link-text">Github</text>
-        </a>
-    </div>
-    <div>
-        <a href="mailto:plexx@plexx.dev">
-            <svg class="icon">
-                <use href="/static/icons/index_icons.svg#email"></use>
-            </svg><text class="link-text">Email</text>
+            </svg><span class="link-text">Github</span>
         </a>
     </div>
     <div>
         <a href="https://steamcommunity.com/id/plexxdev/">
             <svg class="icon">
                 <use href="/static/icons/index_icons.svg#steam"></use>
-            </svg><text class="link-text">Steam</text>
+            </svg><span class="link-text">Steam</span>
         </a>
     </div>
     <div>
         <a href="https://status.plexx.dev">
             <svg class="icon">
                 <use href="/static/icons/index_icons.svg#server-status"></use>
-            </svg><text class="link-text">Server-Status</text>
+            </svg><span class="link-text">Server-Status</span>
         </a>
     </div>
     <div>
         <a href="/games">
             <svg class="icon">
                 <use href="/static/icons/index_icons.svg#games"></use>
-            </svg><text class="link-text">Games</text>
+            </svg><span class="link-text">Games</span>
         </a>
     </div>
     <div>
         <a href="/static/pgp.txt">
             <svg class="icon">
                 <use href="/static/icons/index_icons.svg#key"></use>
-            </svg><text class="link-text">PGP-Key</text>
+            </svg><span class="link-text">PGP-Key</span>
         </a>
     </div>
     <div>
         <a href="https://discordapp.com/users/374877266540363776">
             <svg class="icon">
                 <use href="/static/icons/index_icons.svg#discord"></use>
-            </svg></i><text class="link-text">plexxdev</text>
+            </svg></i><span class="link-text">plexxdev</span>
         </a>
     </div>
 </div>
