@@ -35,6 +35,8 @@ async function run() {
     const frameDuration = 1000 / universe.get_speed(); // in milliseconds
     let lastTime = performance.now();
 
+    let lastScore = -1;
+    
     const renderLoop = () => {
         const now = performance.now();
         const elapsed = now - lastTime;
@@ -46,7 +48,11 @@ async function run() {
             drawCells();
             drawGrid();
 
-            document.getElementById('score').innerText = `Score: ${universe.get_score()}`;
+            let currentScore = universe.get_score();
+            if (universe.get_score() != lastScore) {
+                document.getElementById('score').innerText = `Score: ${currentScore}`;
+                lastScore = currentScore;
+            }
         }
 
         animationId = requestAnimationFrame(renderLoop);
