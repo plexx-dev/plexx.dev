@@ -23,7 +23,7 @@ html::-webkit-scrollbar {
 }
 
 body {
-    background-color: rgb(0, 0, 0);
+    background-color: black;
     color: #fff;
     margin: 0;
     height: 100%;
@@ -174,15 +174,21 @@ input[type=url] {
 }
 
 .button {
-    border-width: 3px;
-    border-style: dashed;
-    border-radius: 0;
-    padding: 0.3rem;
+    padding: 0.4rem;
     margin-top: 1rem;
 
+    color: rgb(255, 255, 255);
     background-color: black;
-    color: white;
-    text-size-adjust: 1rem;
+
+    display: inline-block;
+
+    border-style: dashed;
+
+    border-image-source: url("/static/border-wider-gap.png");
+    border-image-slice: 2;
+    border-image-repeat: round;
+
+    cursor: pointer;
 }
 
 .icon {
