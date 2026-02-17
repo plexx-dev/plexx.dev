@@ -7,6 +7,8 @@
     <button id="start" class="button">start/stop</button>
     <script type="module" src="/game_files/snake/index.js"></script>
 </div>
-<p id="start-text">press any arrowkey / wasd or space to start</p>
+<div class="game-container">
+    <p id="start-text" class="start-stop">press any arrowkey / wasd or space to start</p>
+</div>
 
 {% endblock content %}
