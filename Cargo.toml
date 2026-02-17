@@ -1,17 +1,15 @@
 [package]
 name = "plexx-dev"
 version = "0.1.0"
-edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+edition = "2024"
+description = "a small website"
+license = "GPL-3.0"
+license-file = "LICENSE"
+repository = "https://github.com/plexx-dev/plexx.dev"
 
 [dependencies]
 rocket = "0.5.1"
 rocket_dyn_templates = { version = "0.2.0", features = ["tera"] }
-sha2 = "0.10.9"
-hex = "*"
-chrono = "0.4.41"
-
 
 [workspace]
 members = [

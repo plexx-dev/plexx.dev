@@ -1,16 +1,5 @@
-// https://rustwasm.github.io/docs/book/game-of-life/implementing.html
-
-mod utils;
-
+use rand::{prelude::*, rng};
 use wasm_bindgen::prelude::*;
-
-extern crate js_sys;
-
-// When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
-// allocator.
-#[cfg(feature = "wee_alloc")]
-#[global_allocator]
-static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 #[repr(u8)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -92,12 +81,13 @@ impl Universe {
 #[wasm_bindgen]
 impl Universe {
     pub fn new() -> Universe {
+        let mut rng = rng();
         let width = 128;
         let height = 128;
 
         let cells = (0..width * height)
             .map(|_i| {
-                if js_sys::Math::random() < 0.5 {
+                if rng.random::<f32>() < 0.5 {
                     Cell::Alive
                 } else {
                     Cell::Dead

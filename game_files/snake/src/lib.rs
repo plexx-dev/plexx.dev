@@ -1,19 +1,7 @@
-// https://rustwasm.github.io/docs/book/game-of-life/implementing.html
-
-mod utils;
-
 use wasm_bindgen::prelude::*;
 
-//extern crate js_sys;
-
-use rand::rngs::SmallRng;
-use rand::{Rng, SeedableRng};
-
-// When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
-// allocator.
-#[cfg(feature = "wee_alloc")]
-#[global_allocator]
-static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
+use rand::rngs::ThreadRng;
+use rand::{RngExt, rng};
 
 #[repr(u8)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -41,7 +29,7 @@ pub struct Universe {
     direction: Direction,
     score: u32,
     speed: u32,
-    rng: SmallRng,
+    rng: ThreadRng,
     is_paused: bool,
 }
 
@@ -85,7 +73,7 @@ impl Universe {
 
         let score = 0;
         let speed = 3;
-        let rng = SmallRng::from_entropy();
+        let rng = rng();
         let is_paused = true;
 
         Universe {
@@ -102,10 +90,10 @@ impl Universe {
     }
 
     pub fn spawn_apple(&mut self) {
-        let mut next_apple = self.rng.gen_range(0..(self.width() * self.width())) as usize;
+        let mut next_apple = self.rng.random_range(0..(self.width() * self.width())) as usize;
 
         while self.snake_pos.contains(&next_apple) {
-            next_apple = self.rng.gen_range(0..(self.width() * self.width())) as usize;
+            next_apple = self.rng.random_range(0..(self.width() * self.width())) as usize;
         }
 
         self.cells[next_apple] = Cell::Apple;

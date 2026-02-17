@@ -2,29 +2,20 @@
 name = "snake"
 version = "0.1.0"
 edition = "2024"
+description = "a small wasm snake game"
+license = "GPL-3.0"
+repository = "https://github.com/plexx-dev/plexx.dev/tree/master/game_files/snake"
 
 [lib]
 crate-type = ["cdylib", "rlib"] # Compile as a shared library for WASM
 
-[features]
-default = ["console_error_panic_hook"]
-
 [dependencies]
-rand = { version = "0.8", features = ["small_rng"] }
+rand = { version = "0.10.0"}
 wasm-bindgen = "0.2"
-getrandom = { version = "0.2", features = ["js"] }
-
-# The `console_error_panic_hook` crate provides better debugging of panics by
-# logging them with `console.error`. This is great for development, but requires
-# all the `std::fmt` and `std::panicking` infrastructure, so isn't great for
-# code size when deploying.
-console_error_panic_hook = { version = "0.1.7", optional = true }
-js-sys = "0.3"
-fixedbitset = "*"
+getrandom = { version = "0.4.1", features = ["wasm_js"] }
 
 [dev-dependencies]
-wasm-bindgen-test = "0.3.34"
+wasm-bindgen-test = "0.3.58"
 
 [profile.release]
-# Tell `rustc` to optimize for small code size.
 opt-level = "s"
