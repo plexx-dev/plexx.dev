@@ -157,6 +157,13 @@ input[type=url] {
     }
 }
 
+.control-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Vertically centers items */
+  gap: 15px;           /* Adds consistent spacing between items */
+}
+
 .start-stop {
     padding: 24px 100px;
     background-color: rgba(255, 0, 0, 0.61);
@@ -185,6 +192,7 @@ input[type=url] {
 .button {
     padding: 0.4rem;
     margin-top: 1rem;
+    margin-bottom: 1rem;
 
     color: rgb(255, 255, 255);
     background-color: black;

@@ -123,12 +123,12 @@ async function run() {
     };
 
     const play = () => {
-        playPauseButton.textContent = "⏸";
+        playPauseButton.textContent = "pause";
         renderLoop();
     };
 
     const pause = () => {
-        playPauseButton.textContent = "▶";
+        playPauseButton.textContent = "play";
         cancelAnimationFrame(animationId);
         animationId = null;
     };
@@ -176,8 +176,6 @@ async function run() {
         }
 
         render() {
-            // Convert the delta time since the last frame render into a measure
-            // of frames per second.
             const now = performance.now();
             const delta = now - this.lastFrameTimeStamp;
             this.lastFrameTimeStamp = now;
@@ -189,25 +187,14 @@ async function run() {
                 this.frames.shift();
             }
 
-            // Find the max, min, and mean of our 100 latest timings.
-            let min = Infinity;
-            let max = -Infinity;
             let sum = 0;
             for (let i = 0; i < this.frames.length; i++) {
                 sum += this.frames[i];
-                min = Math.min(this.frames[i], min);
-                max = Math.max(this.frames[i], max);
             }
             let mean = sum / this.frames.length;
 
             // Render the statistics.
-            this.fps.textContent = `
-            Frames per Second:
-                    latest = ${Math.round(fps)}
-            avg of last 100 = ${Math.round(mean)}
-            min of last 100 = ${Math.round(min)}
-            max of last 100 = ${Math.round(max)}
-            `.trim();
+            this.fps.textContent = `FPS: ${Math.round(mean)}`.trim();
         }
     };
 
