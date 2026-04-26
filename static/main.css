@@ -1,10 +1,14 @@
 @font-face {
     font-family: "JetBrains Mono";
-    src: url("webfonts/JetBrainsMono-Regular_compact.woff2");
+    src: url("webfonts/JetBrainsMono-Regular_compact.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
 }
 
-* {
-    font-family: "JetBrains Mono";
+body {
+    /* Apply to body; everything else will inherit it naturally */
+    font-family: "JetBrains Mono", monospace; 
 }
 
 html {
