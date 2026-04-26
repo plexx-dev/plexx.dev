@@ -7,7 +7,6 @@
 }
 
 body {
-    /* Apply to body; everything else will inherit it naturally */
     font-family: "JetBrains Mono", monospace; 
 }
 
