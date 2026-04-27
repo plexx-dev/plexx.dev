@@ -40,6 +40,10 @@ main {
     max-height: fit-content;
 }
 
+.svg-sprite {
+    display: none;
+}
+
 .title {
     text-align: center;
     font-size: 8rem;
