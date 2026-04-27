@@ -1,6 +1,8 @@
+use std::path::Path;
+
 use rocket::{catch, catchers, get, launch, routes, Request};
 use rocket::shield::Shield;
-use rocket::fs::FileServer;
+use rocket::fs::{FileServer, NamedFile};
 use rocket::http::Status;
 
 use rocket_dyn_templates::{Template, context};
@@ -13,6 +15,11 @@ mod ping_pong;
 #[get("/")]
 async fn index() -> Template {
     Template::render("index", context! {})
+}
+
+#[get("/robots.txt")]
+async fn robots() -> Option<NamedFile> {
+    NamedFile::open(Path::new("static/robots.txt")).await.ok()
 }
 
 #[catch(default)]
@@ -32,6 +39,9 @@ async fn rocket() -> _ {
         .attach(shield)
         .mount("/", routes![
             index
+        ])
+        .mount("/", routes![
+            robots
         ])
         .mount("/games/", routes![
             games::index,
